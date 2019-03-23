@@ -11,7 +11,7 @@ class SongFile:
         self.is_duet = False
 
     def parse(self):
-        line = self.next_line()
+        line = self.next_line().strip()
         while (line and line != "E"):
             self.parse_line(line)
             line = self.next_line()
@@ -76,7 +76,6 @@ class SongFile:
                 self.duetsingers[int(singer_no)] = val
                 self.is_duet = True
         elif line[0] == "P":
-            [_, no] = line.split(" ")
             part_data = []
             #The actual lyric data will follow, discard this for now
             line = self.next_line()
